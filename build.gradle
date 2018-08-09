@@ -1,0 +1,57 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+        springbootAdminVersion = '2.0.2'
+    }
+    repositories {
+        maven { setUrl('http://maven.aliyun.com/nexus/content/groups/public/') }
+        maven { setUrl('http://maven.aliyun.com/nexus/content/repositories/central') }
+        maven { setUrl('http://repo.spring.io/plugins-release') }
+        maven { setUrl("https://plugins.gradle.org/m2/") }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.twigcodes'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+apply from: './gradle/docker.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    // 如果使用 undertow 或 jetty 需要把默认包含的 tomcat 排除在外
+    compile.exclude module: 'spring-boot-starter-tomcat'
+}
+
+ext {
+    springCloudVersion = 'Finchley.SR1'
+}
+
+dependencies {
+    implementation("de.codecentric:spring-boot-admin-starter-server:${springbootAdminVersion}")
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
+    implementation("org.springframework.cloud:spring-cloud-starter-bus-amqp")
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-undertow")
+    runtime('org.springframework.boot:spring-boot-devtools')
+    compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
