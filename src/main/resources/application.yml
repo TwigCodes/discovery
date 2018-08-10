@@ -1,6 +1,12 @@
 server:
   port: 8761
-spring.boot.admin.context-path: /admin
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  boot.admin.context-path: /admin
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
@@ -22,6 +28,11 @@ management:
 
 spring:
   profiles: prod
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   instance:
     hostname: discovery
