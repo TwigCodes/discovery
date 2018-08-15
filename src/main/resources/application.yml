@@ -1,20 +1,25 @@
 server:
   port: ${SERVER_PORT:8761}
 spring:
+  cloud.config.server:
+    prefix: /config
+    git.uri: ${CONFIG_GIT_REPO_URI:https://github.com/TwigCodes/twig-config-files.git}
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}
     port: ${RABBITMQ_PORT:5672}
     username: ${RABBITMQ_USERNAME:guest}
     password: ${RABBITMQ_PASSWORD:guest}
   boot.admin.context-path: /admin
+  aop:
+    proxy-target-class: true
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 10
-    health-check-url-path: /actuator/health
+    prefer-ip-address: true
   client:
-    registryFetchIntervalSeconds: 5
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+    registerWithEureka: false
+    fetchRegistry: true
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
 management:
   endpoints:
     web:
@@ -23,17 +28,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-
----
-
-spring:
-  profiles: prod
-eureka:
-  instance:
-    hostname: discovery
-    leaseRenewalIntervalInSeconds: 10
-    health-check-url-path: /actuator/health
-  client:
-    registryFetchIntervalSeconds: 5
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+logging:
+  level:
+    org.springframework: ERROR
+    org.springframework.security: ERROR
+    org.springframework.security.oauth2: ERROR
+    org.springframework.cloud: ERROR
+    com.twigcodes.discovery: ERROR
+    com.netflix.discovery: ERROR
