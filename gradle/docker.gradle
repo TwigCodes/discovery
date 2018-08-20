@@ -15,7 +15,7 @@ repositories {
 task createDockerfile(type: com.bmuschko.gradle.docker.tasks.image.Dockerfile, dependsOn: ['bootJar']) {
     description = "自动创建 Dockerfile"
     destFile = project.file('src/main/docker/Dockerfile')
-    from 'openjdk:8-jdk-alpine'
+    from 'openjdk:8-jre-alpine'
     volume '/tmp'
     addFile "${project.name}-${project.version.toString()}.jar", "app.jar"
     instruction { 'ENTRYPOINT [' +
