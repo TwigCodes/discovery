@@ -1,4 +1,4 @@
-# TwigCode Discovery - Central Service for Discovery, Configuration and Monitoring
+# TwigCodes Discovery - Central Service for Discovery, Configuration and Monitoring
 
 [![CircleCI](https://circleci.com/gh/TwigCodes/discovery.svg?style=svg)](https://circleci.com/gh/TwigCodes/discovery)
 
