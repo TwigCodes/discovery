@@ -10,7 +10,7 @@ buildscript {
 apply plugin: com.bmuschko.gradle.docker.DockerRemoteApiPlugin
 
 repositories {
-    maven { setUrl('http://maven.aliyun.com/nexus/content/repositories/jcenter') }
+    jcenter()
 }
 
 final String registryUsername = System.getenv("DOCKER_REGISTRY_USERNAME")
