@@ -3,6 +3,7 @@ buildscript {
         springBootVersion = '2.0.4.RELEASE'
         springbootAdminVersion = '2.0.2'
     }
+    ext['lombok.version'] = '1.18.2'
     repositories {
         maven { setUrl('http://maven.aliyun.com/nexus/content/groups/public/') }
         maven { setUrl('http://maven.aliyun.com/nexus/content/repositories/central') }
@@ -12,9 +13,6 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
-}
-plugins {
-    id 'net.ltgt.apt' version '0.10'
 }
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
