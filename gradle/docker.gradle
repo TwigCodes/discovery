@@ -13,7 +13,7 @@ repositories {
     maven { setUrl('http://maven.aliyun.com/nexus/content/repositories/jcenter') }
 }
 
-final String registryUsername = System.getenv("DOCKER_REGISTRY_USRNAME")
+final String registryUsername = System.getenv("DOCKER_REGISTRY_USERNAME")
 final String registryPassword = System.getenv("DOCKER_REGISTRY_PASSWORD")
 
 docker {
