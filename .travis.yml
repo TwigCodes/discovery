@@ -1,0 +1,25 @@
+language: java
+
+jdk:
+- oraclejdk8
+
+sudo: required
+
+services:
+- docker
+
+install: true
+
+script: gradle bootJar
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GITHUB_ACCESS_TOKEN
+  file: target/app.jar
+  on:
+    repo: TwigCodes/twig-discovery
+    tags: true
+
+after_deploy:
+- gradle pushDocker
