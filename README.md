@@ -1,6 +1,7 @@
 # TwigCodes Discovery - Central Service for Discovery, Configuration and Monitoring
 
 [![CircleCI](https://circleci.com/gh/TwigCodes/discovery.svg?style=svg)](https://circleci.com/gh/TwigCodes/discovery)
+[![Build Status](https://travis-ci.org/TwigCodes/discovery.svg?branch=master)](https://travis-ci.org/TwigCodes/discovery)
 
 The project is powered by Spring Cloud Config, Spring Cloud Netfilx Eureka and Spring Boot Admin. It acts as the central config server, discovery registry and service monitoring. The purpose of the project is to eliminate the efforts to set up individual config server, service discovery registry and monitoring services, which are commonly used in micro-service architecture.
 
