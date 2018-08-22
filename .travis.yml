@@ -18,7 +18,7 @@ deploy:
   api_key: $GITHUB_ACCESS_TOKEN
   file: target/app.jar
   on:
-    repo: TwigCodes/twig-discovery
+    repo: TwigCodes/discovery
     tags: true
 
 after_deploy:
