@@ -1,0 +1,15 @@
+startingVersion='0.1.0'
+autobump {
+    majorPattern = ~/\[major]/
+    minorPattern = ~/\[minor]/
+    patchPattern = ~/\[patch]/
+    newPreReleasePattern = ~/\[new-pre-release]/
+    promoteToReleasePattern = ~/\[promote]/
+}
+preRelease {
+    startingVersion='beta.0'
+    // The bumping scheme is beta.0 -> beta.1 -> ... -> beta.n
+    bump = {
+        "beta.${((it - ~/^beta\./) as int) + 1}"
+    }
+}

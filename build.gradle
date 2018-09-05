@@ -14,40 +14,37 @@ buildscript {
     }
 }
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-
 group = 'com.twigcodes'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
-
+targetCompatibility = 1.8
 apply from: './gradle/docker.gradle'
-
 repositories {
     mavenCentral()
 }
-
 ext {
     springCloudVersion = 'Finchley.SR1'
 }
-
 dependencies {
-    compile("de.codecentric:spring-boot-admin-starter-server:${springbootAdminVersion}")
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    compile("org.springframework.cloud:spring-cloud-config-server")
-    compile("org.springframework.cloud:spring-cloud-config-monitor")
-    compile('org.springframework.cloud:spring-cloud-starter-bus-amqp')
-    compile("org.springframework.cloud:spring-cloud-starter-stream-rabbit")
-    compile("org.springframework.boot:spring-boot-starter-security")
-    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
+    implementation("de.codecentric:spring-boot-admin-starter-server:${springbootAdminVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.cloud:spring-cloud-config-server")
+    implementation("org.springframework.cloud:spring-cloud-config-monitor")
+    implementation('org.springframework.cloud:spring-cloud-starter-bus-amqp')
+    implementation("org.springframework.cloud:spring-cloud-starter-stream-rabbit")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
     runtime('org.springframework.boot:spring-boot-devtools')
-    compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    annotationProcessor('org.projectlombok:lombok')
     compileOnly('org.projectlombok:lombok')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
-
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
+configurations.compileOnly.extendsFrom(configurations.annotationProcessor)
