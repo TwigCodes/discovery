@@ -153,3 +153,5 @@ Desktop.ini
 ######################
 classpath-data.json
 .gradletasknamecache
+
+src/main/docker/Dockerfile
