@@ -1,6 +1,8 @@
 server:
   port: ${SERVER_PORT:8761}
 spring:
+  profiles:
+    active: local
   cloud.config.server:
     prefix: /config
     git.uri: ${CONFIG_GIT_REPO_URI:https://github.com/TwigCodes/twig-config-files.git}
@@ -28,6 +30,33 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+---
+spring:
+  profiles: local
+  cloud:
+    config:
+      enabled: false
+eureka:
+  client:
+    enabled: false
+logging:
+  level:
+    org.springframework: DEBUG
+    org.springframework.cloud: 'OFF'
+    com.twigcodes.discovery: DEBUG
+    com.netflix.discovery: 'OFF'
+---
+spring:
+  profiles: dev
+logging:
+  level:
+    org.springframework: DEBUG
+    org.springframework.cloud: DEBUG
+    com.twigcodes.discovery: DEBUG
+    com.netflix.discovery: DEBUG
+---
+spring:
+  profiles: prod
 logging:
   level:
     org.springframework: ERROR
