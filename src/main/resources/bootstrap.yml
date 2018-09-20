@@ -1,4 +1,5 @@
+server:
+  port: ${SERVER_PORT:8761}
 spring:
   application:
     name: discovery
-  cloud.config.uri: ${CONFIG_SERVER_URI:localhost:8761}
