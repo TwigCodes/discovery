@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+    - '5672:5672' # JMS 端口
+    - '15672:15672' # 管理端口 default user:pass = guest:guest
+    networks:
+    - docker-app
+
+volumes:
+  pgdata: {}
+networks:
+  docker-app:
+    driver: bridge
