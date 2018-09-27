@@ -1,9 +1,12 @@
 spring:
   profiles:
-    active: local
+    active: dev
   cloud.config.server:
     prefix: /config
-    git.uri: ${CONFIG_GIT_REPO_URI:https://github.com/TwigCodes/twig-config-files.git}
+    git:
+      uri: ${CONFIG_GIT_REPO_URI:https://gitee.com/twigcodes/twig-config-files.git}
+      username: ${CONFIG_GIT_USERNAME}
+      password: ${CONFIG_GIT_PASSWORD}
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}
     port: ${RABBITMQ_PORT:5672}
@@ -24,25 +27,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
   endpoint:
     health:
       show-details: ALWAYS
----
-spring:
-  profiles: local
-  cloud:
-    config:
-      enabled: false
-eureka:
-  client:
-    enabled: false
-logging:
-  level:
-    org.springframework: DEBUG
-    org.springframework.cloud: 'OFF'
-    com.twigcodes.discovery: DEBUG
-    com.netflix.discovery: 'OFF'
 ---
 spring:
   profiles: dev

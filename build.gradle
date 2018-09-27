@@ -48,3 +48,20 @@ dependencyManagement {
     }
 }
 configurations.compileOnly.extendsFrom(configurations.annotationProcessor)
+def static getenv(path = ".env") {
+    def env = [:]
+
+    def file = new File(path)
+    if (file.exists()) {
+        file.eachLine { line ->
+            def (name, value) = line.tokenize("=")
+            env[name.trim()] = value.trim()
+        }
+    }
+
+    return env
+}
+bootRun {
+    getenv().each { name, value -> environment name, value }
+    systemProperties System.properties
+}
