@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.5.RELEASE'
-        springbootAdminVersion = '2.0.2'
+        springBootVersion = '2.0.7.RELEASE'
+        springbootAdminVersion = '2.0.4'
     }
     ext['lombok.version'] = '1.18.2'
     repositories {
@@ -25,9 +25,10 @@ repositories {
     mavenCentral()
 }
 ext {
-    springCloudVersion = 'Finchley.SR1'
+    springCloudVersion = 'Finchley.SR2'
 }
 dependencies {
+//    implementation("org.jolokia:jolokia-core")
     implementation("de.codecentric:spring-boot-admin-starter-server:${springbootAdminVersion}")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.cloud:spring-cloud-config-server")
